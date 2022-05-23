@@ -4,17 +4,20 @@ import postData from "./postData";
 const cart = () => {
 const cartBtn = document.getElementById('cart'),
       cartModal = document.querySelector('.cart'),
+      cartCounter = document.querySelector('.counter'),
       cartCloseBtn = cartModal.querySelector('.cart-close'),
       cartTotal = cartModal.querySelector('.cart-total > span'),
       cartSendBtn = cartModal.querySelector('.cart-confirm'),
       goodsWrapper = document.querySelector('.goods'),
       cartWrapper = document.querySelector('.cart-wrapper');
-
     const openCart = () => {
         const cart = localStorage.getItem('cart') ? JSON.parse(localStorage.getItem('cart')) : [];
         cartModal.style.display = 'flex';
-
+        
         renderCart(cart);
+          
+        cartCounter.textContent = JSON.parse(localStorage.getItem('cart').length);
+        console.log(cartCounter);
 
         cartTotal.textContent = cart.reduce((sum, goodsItem) => {
             return sum + goodsItem.price;
@@ -37,7 +40,6 @@ const cartBtn = document.getElementById('cart'),
             const goodItem = goods.find((item) => {
                 return item.id === +key;
             });
-
             cart.push(goodItem);
 
             localStorage.setItem('cart', JSON.stringify(cart));
@@ -75,7 +77,7 @@ const cartBtn = document.getElementById('cart'),
 
             cartTotal.textContent = 0;
         });
-    });
+    });  
 };
 
 export default cart;
