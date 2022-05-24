@@ -16,7 +16,7 @@ const cartBtn = document.getElementById('cart'),
         
         renderCart(cart);
           
-        cartCounter.textContent = JSON.parse(localStorage.getItem('cart').length);
+        cartCounter.textContent = JSON.parse(localStorage.getItem('cart')).length;
         console.log(cartCounter);
 
         cartTotal.textContent = cart.reduce((sum, goodsItem) => {
