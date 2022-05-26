@@ -16,9 +16,6 @@ const cartBtn = document.getElementById('cart'),
         
         renderCart(cart);
           
-        cartCounter.textContent = JSON.parse(localStorage.getItem('cart')).length;
-        console.log(cartCounter);
-
         cartTotal.textContent = cart.reduce((sum, goodsItem) => {
             return sum + goodsItem.price;
         }, 0);
@@ -43,6 +40,7 @@ const cartBtn = document.getElementById('cart'),
             cart.push(goodItem);
 
             localStorage.setItem('cart', JSON.stringify(cart));
+            cartCounter.textContent = JSON.parse(localStorage.getItem('cart')).length;
         }
     });
 
@@ -61,6 +59,7 @@ const cartBtn = document.getElementById('cart'),
 
             renderCart(cart);
 
+            cartCounter.textContent = JSON.parse(localStorage.getItem('cart')).length;
             cartTotal.textContent = cart.reduce((sum, goodsItem) => {
                 return sum + goodsItem.price;
             }, 0);
@@ -76,6 +75,7 @@ const cartBtn = document.getElementById('cart'),
             renderCart([]);
 
             cartTotal.textContent = 0;
+            cartCounter.textContent = 0;
         });
     });  
 };
